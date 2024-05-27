@@ -10,6 +10,7 @@ export interface ProductsProps {
 
 const Products = ({ title, products, amount }: ProductsProps) => {
 	const list = products?.filter((_, i) => i < amount);
+
 	return (
 		<section className={styles.products}>
 			{title && <h2>{title}</h2>}

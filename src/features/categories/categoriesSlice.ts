@@ -22,7 +22,7 @@ export interface ICategory {
 	image: string;
 }
 
-export interface IInitialState {
+ interface IInitialState {
 	list?: ICategory[];
 	isLoading: boolean;
 }

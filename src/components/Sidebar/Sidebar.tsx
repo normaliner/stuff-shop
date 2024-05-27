@@ -6,32 +6,35 @@ import styles from '../../styles/Sidebar.module.css';
 
 const Sidebar = () => {
 	const { list, isLoading } = useSelector((s: RootState) => s.categories);
-	console.log(list);
 
 	return (
 		<section className={styles.sidebar}>
-			<div className={styles.title}>CATEGORIES</div>
-			<nav>
-				<ul className={styles.menu}>
-					{!isLoading && list?.map(({ id, name }) => {
-						return (
-							<li key={id} className={styles.linkHover}>
-								<NavLink
-									className={({ isActive }) =>
-										cn(styles.link, {
-											[styles.active]: isActive,
-										})
-									}
-									to={`/categories/${id}`}
-								>
-									{name}
-								</NavLink>
-							</li>
-						);
-					})}
-					{isLoading && <li>Loading...</li>}
-				</ul>
-			</nav>
+			<div>
+				<div className={styles.title}>CATEGORIES</div>
+				<nav>
+					<ul className={styles.menu}>
+						{!isLoading &&
+							list?.map(({ id, name }) => {
+								return (
+									<li key={id} className={styles.linkHover}>
+										<NavLink
+											className={({ isActive }) =>
+												cn(styles.link, {
+													[styles.active]: isActive,
+												})
+											}
+											to={`/categories/${id}`}
+										>
+											{name}
+										</NavLink>
+									</li>
+								);
+							})}
+						{isLoading && <li>Loading...</li>}
+					</ul>
+				</nav>
+			</div>
+
 			<div className={styles.footer}>
 				<a
 					href='https://github.com/normaliner'
