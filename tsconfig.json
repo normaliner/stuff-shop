@@ -21,6 +21,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"types": ["node"]
 	},
-	"include": ["src"],
+	"include": ["src", "src/components/Favourites/Favourites.tsx"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

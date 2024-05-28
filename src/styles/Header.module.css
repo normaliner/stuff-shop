@@ -108,7 +108,7 @@
   fill: var(--white);
 }
 
-.cart {
+.cart, .favourites {
   position: relative;
 }
 
@@ -126,7 +126,10 @@
   text-align: center;
   line-height: 16px;
 }
-
+.fav-count{
+  background:   var(--light);
+  color: var(--violet);
+}
 .box {
   z-index: 9;
   top: 120%;

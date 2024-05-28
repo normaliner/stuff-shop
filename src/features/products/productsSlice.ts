@@ -12,6 +12,7 @@ export interface IProduct {
 	category: ICategory;
 	images: string[];
 	quantity?: number;
+	favourites?: number;
 }
 
 export const getProducts = createAsyncThunk(

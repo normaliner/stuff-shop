@@ -8,10 +8,11 @@ import AvatarIcon from '../../images/avatar.jpg';
 import LogoIcon from '../../images/logo.svg';
 import styles from '../../styles/Header.module.css';
 import { ROUTES } from '../utils/routes';
+import cn from 'classnames'
 const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { currentUser } = useSelector((s: RootState) => s.user);
+	const { currentUser, cart, favourites } = useSelector((s: RootState) => s.user);
 	const [searchValue, setSearchValue] = useState('');
 	const [values, setValues] = useState({ name: 'Guest', avatar: AvatarIcon });
 	const { data, isLoading } = useGetProductsQuery({ title: searchValue });
@@ -88,16 +89,21 @@ const Header = () => {
 					)}
 				</form>
 				<div className={styles.account}>
-					<Link to={ROUTES.HOME} className={styles.favourites}>
+					<Link to={ROUTES.FAVOURITES} className={styles.favourites}>
 						<svg className={styles['icon-fav']}>
 							<use xlinkHref={`/sprite.svg#heart`} />
 						</svg>
+						<span className={cn(styles.count, styles['fav-count'])}>
+						{favourites.reduce((acc, c) => acc + c.favourites, 0)}
+						</span>
 					</Link>
 					<Link to={ROUTES.CART} className={styles.cart}>
 						<svg className={styles['icon-cart']}>
 							<use xlinkHref={`/sprite.svg#bag`} />
 						</svg>
-						<span className={styles.count}>2</span>
+						<span className={styles.count}>
+							{cart.reduce((acc, c) => acc + c.quantity, 0)}
+						</span>
 					</Link>
 				</div>
 			</div>

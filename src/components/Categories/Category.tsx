@@ -51,7 +51,7 @@ const Category = () => {
 	useEffect(() => {
 		if (!id || !list?.length) return;
 		const category = list.find(el => el.id === Number(id)) as ICategory;
-		if(!category) return
+		if (!category) return;
 		setCat(category.name);
 	}, [list, id]);
 
@@ -65,6 +65,12 @@ const Category = () => {
 		setItems([]);
 		setEnd(false);
 		setParams({ ...defaultParams, ...values });
+	};
+
+	const handleReset = () => {
+		setValues(defaultValues);
+		setParams(defaultParams);
+		setEnd(false);
 	};
 	return (
 		<section className={styles.wrapper}>
@@ -106,7 +112,7 @@ const Category = () => {
 			) : !isSuccess || !items.length ? (
 				<div className={styles.back}>
 					<span>No results</span>
-					<button>Reset</button>
+					<button onClick={handleReset}>Reset</button>
 				</div>
 			) : (
 				<Products title='' products={items} amount={items.length} />

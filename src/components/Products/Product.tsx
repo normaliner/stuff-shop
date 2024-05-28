@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IProduct } from '../../features/products/productsSlice';
-import { addItemToCart } from '../../features/user/userSlice';
+import { addItemToCart, addItemToFav } from '../../features/user/userSlice';
 import styles from '../../styles/Product.module.css';
-import { parseImageUrl } from '../utils/common';
 import { ROUTES } from '../utils/routes';
 const SIZES = [4, 4.5, 5];
 
@@ -25,6 +24,9 @@ const Product = (product: IProduct) => {
 		dispatch(addItemToCart(product));
 	};
 
+	const addToFav = () => {
+		dispatch(addItemToFav(product));
+	};
 	return (
 		<section className={styles.product}>
 			<div className={styles.images}>
@@ -38,7 +40,7 @@ const Product = (product: IProduct) => {
 							key={i}
 							className={styles.image}
 							style={{ backgroundImage: `url(${image})` }}
-							onClick={() => setCurrentImage(parseImageUrl(image))}
+							onClick={() => setCurrentImage(image)}
 						/>
 					))}
 				</div>
@@ -74,7 +76,7 @@ const Product = (product: IProduct) => {
 					>
 						Add to cart
 					</button>
-					<button className={styles.favourite}>Add to favourites</button>
+					<button onClick={addToFav} className={styles.favourite} disabled={!currentSize}>Add to favourites</button>
 				</div>
 				<div className={styles.bottom}>
 					<div className={styles.purchase}>19 people purchased</div>

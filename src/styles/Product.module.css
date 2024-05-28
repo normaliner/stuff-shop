@@ -130,3 +130,6 @@
   cursor: not-allowed;
   background: var(--bg);
 }
+.favourite:disabled{
+  cursor: not-allowed;
+}
